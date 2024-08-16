@@ -1,0 +1,46 @@
+name: Publish to NPM
+description: Publish package(s) to NPM
+branding:
+  icon: package
+  color: red
+inputs:
+  workspace:
+    description: Workspace of the package. Default to root.
+    required: false
+    default: ""
+  node-version:
+    description: Node.js version
+    required: false
+    default: lts/*
+  registry-url:
+    description: NPM registry-url
+    required: false
+    default: https://registry.npmjs.org
+  npm-token:
+    description: NPM authorization token
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        registry-url: ${{ inputs.registry-url }}
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+    - name: Publish root package
+      if: ${{ inputs.workspace == '' }}
+      shell: bash
+      run: npm publish --provenance --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.npm-token }}
+    - name: Publish workspace package
+      if: ${{ inputs.workspace != '' }}
+      shell: bash
+      run: npm publish --workspace ${{ inputs.workspace }} --provenance --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.npm-token }}
