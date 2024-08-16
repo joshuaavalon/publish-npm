@@ -37,10 +37,10 @@ runs:
       shell: bash
       run: npm publish --provenance --access public
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.npm-token }}
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
     - name: Publish workspace package
       if: ${{ inputs.workspace != '' }}
       shell: bash
       run: npm publish --workspace ${{ inputs.workspace }} --provenance --access public
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.npm-token }}
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }}
