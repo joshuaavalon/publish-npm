@@ -1,4 +1,4 @@
-# joshuaavalon/action-npm-publish
+# joshuaavalon/publish-npm
 
 ## Usage
 
