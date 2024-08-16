@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/joshuaavalon/publish-npm/compare/v1.0.1...v1.0.2) (2024-08-16)
+
+
+### Bug Fixes
+
+* use inputs instead of secrets ([c00467e](https://github.com/joshuaavalon/publish-npm/commit/c00467eb9d005e9451fcfbcac0197776bdc4a1e7))
+
 ## [1.0.1](https://github.com/joshuaavalon/publish-npm/compare/v1.0.0...v1.0.1) (2024-08-16)
 
 
